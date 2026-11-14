@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101b39"><title>Seuz | Sistema Académico en la nube</title>
+<style>:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#1d2942;background:#f4f7fc;font-synthesis:none;font-size:14px}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}a{color:#315fdb}h1,h2,h3,p{margin-top:0}h1{font-size:27px;letter-spacing:-.8px}h2{font-size:19px;letter-spacing:-.45px}h3{font-size:15px}small,.muted{color:#687690}.startup{min-height:100vh;display:grid;place-content:center;text-align:center;gap:10px}.brand-symbol{display:grid;place-items:center;background:linear-gradient(135deg,#5079ff,#684fe6);border-radius:22px;color:white;font-weight:900;font-size:35px;width:60px;height:60px;margin:auto;box-shadow:0 14px 30px #4366cd35}
+.login-screen{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:#fff}.login-visual{background:#101b39;color:white;display:flex;flex-direction:column;justify-content:space-between;padding:70px;position:relative;overflow:hidden}.login-visual:before,.login-visual:after{content:"";position:absolute;border:1px solid #ffffff22;border-radius:50%;width:500px;height:500px;right:-150px;bottom:-150px}.login-visual:after{width:360px;height:360px;right:-80px;bottom:-80px}.login-visual h1{font-size:50px;max-width:520px;line-height:1.07}.login-visual p{font-size:17px;color:#c1cbea;max-width:520px}.login-form-outer{display:grid;place-items:center;padding:25px}.login-card{width:min(420px,100%)}.login-card h2{font-size:30px;margin-bottom:10px}.login-card p{margin-bottom:32px}.logo-inline{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:850;color:#152245;margin-bottom:50px}.login-visual .logo-inline{color:white}.logo-inline .brand-symbol{width:41px;height:41px;font-size:23px;border-radius:13px;margin:0}
+.shell{display:grid;grid-template-columns:254px minmax(0,1fr);min-height:100vh}.sidebar{background:#111e3d;color:#bfc9e3;padding:27px 18px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}.sidebar .logo-inline{color:white;margin:0 9px 35px;font-size:24px}.sidebar-label{font-size:10px;letter-spacing:1.8px;font-weight:800;color:#8190b3;margin:15px 14px}.navbtn{width:100%;display:flex;align-items:center;gap:14px;border:0;background:none;color:#c4cee8;text-align:left;padding:13px 15px;border-radius:11px;font-weight:600;margin:2px 0}.navbtn:hover{background:#1b2c51}.navbtn.active{background:#395cf3;color:white;box-shadow:0 8px 20px #273c9f55}.nav-icon{width:20px;text-align:center;font-size:17px}.profile-chip{border-top:1px solid #ffffff17;padding:21px 10px 0;margin-top:auto}.profile-chip strong{color:white;display:block}.profile-chip span{font-size:12px}.main{min-width:0}.topbar{height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 35px;border-bottom:1px solid #e7ebf3;background:#fff}.topbar .breadcrumb{color:#7a879c;font-weight:600}.topbar .user-badge{background:#edf3ff;border-radius:999px;padding:8px 13px;color:#4053a1;font-size:12px;font-weight:750}.content{max-width:1510px;margin:0 auto;padding:33px 35px 80px}.pagehead{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:23px}.pagehead h1{margin:0 0 7px}.eyebrow{color:#5b6fb9;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;margin-bottom:9px}.subtitle{font-size:13px;color:#71809b;margin:0}.actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.btn{border:1px solid #d8e0ef;border-radius:10px;background:#fff;color:#314162;font-weight:700;padding:10px 16px;display:inline-flex;align-items:center;gap:8px;justify-content:center}.btn:hover{background:#f4f7ff}.btn-primary{background:#3d62ef;color:#fff;border-color:#3d62ef;box-shadow:0 5px 14px #4262d72c}.btn-primary:hover{background:#3156e1}.btn-danger{color:#bd314c;border-color:#f4d5db}.btn-small{padding:6px 9px;font-size:12px;border-radius:8px}.btn-outline-light{background:transparent;color:#d6e1fc;border:1px solid #405278}.btn-block{width:100%}.grid-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-bottom:25px}.kpi,.panel,.welcome{background:white;border:1px solid #e8edf6;border-radius:17px;box-shadow:0 8px 24px #1d35600a}.kpi{padding:22px}.kpi .tag{font-size:12px;color:#6c7a92;font-weight:650}.kpi .num{font-size:32px;color:#18294a;display:block;font-weight:800;margin:15px 0 4px}.kpi .foot{font-size:11px;color:#8491a8}.kpi .kpi-icon{font-size:24px;float:right}.welcome{background:linear-gradient(105deg,#1d3475,#415ff0);padding:31px;color:white;margin-bottom:23px}.welcome h2{font-size:25px;margin-bottom:7px}.welcome p{color:#d7defb;margin-bottom:0}.panels2{display:grid;grid-template-columns:1.3fr 1fr;gap:19px}.panel{padding:22px;margin-bottom:21px}.panel h2{margin:0 0 18px}.alertrow{display:flex;gap:12px;align-items:flex-start;border:1px solid #f5dcae;background:#fffbf1;border-radius:10px;padding:12px;margin:10px 0}.alertrow span{line-height:1.55}.alertrow strong{display:block}.alertrow.info{border-color:#dce6fc;background:#f5f8ff}.hint{color:#7d8ba1;font-size:12px}.table-toolbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 18px}.input,.select,textarea{width:100%;border:1px solid #d5ddea;border-radius:10px;background:white;outline:none;padding:11px 12px;color:#172540}.input:focus,.select:focus,textarea:focus{border-color:#4d6bf1;box-shadow:0 0 0 3px #4d6bf118}.input-search{max-width:370px}.table-wrap{width:100%;overflow:auto}.data-table{width:100%;border-collapse:collapse;text-align:left}.data-table th{color:#75839a;font-size:11px;text-transform:uppercase;letter-spacing:.8px;font-weight:800;padding:13px 12px;border-bottom:1px solid #e8edf4;white-space:nowrap}.data-table td{padding:13px 12px;border-bottom:1px solid #edf0f6;vertical-align:middle}.data-table tbody tr:hover{background:#f9faff}.row-actions{display:flex;gap:5px}.pill{padding:5px 9px;border-radius:999px;display:inline-block;font-size:11px;font-weight:750;background:#eaf0ff;color:#4661b5;white-space:nowrap}.pill.green{background:#e2f6ed;color:#138360}.pill.red{background:#ffeded;color:#bf4650}.pill.amber{background:#fff2d8;color:#a06b12}.empty{padding:50px 18px;text-align:center;color:#7888a5}.field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}.field label{font-size:12px;color:#465574;font-weight:750}.field-note{font-size:11px;color:#8894a9;margin-top:3px}.fields-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 15px}.field.full{grid-column:1/-1}.editor{width:min(690px,calc(100vw - 25px));max-height:88vh;border:0;border-radius:18px;padding:0;box-shadow:0 25px 80px #0e183a66}.editor::backdrop{background:#101b39ac}.editor-head{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:24px 27px;border-bottom:1px solid #e9eef7}.editor-head h2{margin:0}.editor-body{padding:23px 27px;max-height:60vh;overflow:auto}.editor-foot{border-top:1px solid #edf0f6;padding:15px 27px;display:flex;justify-content:flex-end;gap:9px}.help-box{padding:17px;border:1px solid #dfe8fb;background:#f2f6ff;border-radius:12px;color:#435678;font-size:13px}.help-box code{color:#2f50b5}.notices{position:fixed;z-index:500;right:20px;top:20px;max-width:420px}.notice{margin-bottom:9px;padding:14px 18px;background:#15274e;color:white;border-radius:12px;box-shadow:0 8px 32px #15274e55}.notice.fail{background:#a62745}.details-list{display:grid;grid-template-columns:170px 1fr;gap:11px;padding:10px 0;border-bottom:1px solid #e9eef7}.details-list span:first-child{color:#7d8ca6}.mini-num{font-weight:800;font-size:20px}.grade-score{font-variant-numeric:tabular-nums}.footer-note{color:#8b98ad;font-size:11px;margin-top:15px}.report-box{background:white;padding:25px;border-radius:12px}.mobile-menu{display:none}.no-print{}@media(max-width:1100px){.grid-cards{grid-template-columns:repeat(2,1fr)}.panels2{grid-template-columns:1fr}}@media(max-width:790px){.shell{display:block}.sidebar{position:static;height:auto;padding:15px;display:block}.sidebar .logo-inline{margin:0 0 10px}.sidebar-label,.profile-chip{display:none}.nav-list{display:flex;overflow-x:auto;gap:6px}.navbtn{width:auto;white-space:nowrap;padding:9px}.topbar{height:55px;padding:0 17px}.content{padding:23px 15px 60px}.login-screen{grid-template-columns:1fr}.login-visual{min-height:200px;padding:25px}.login-visual h1{font-size:26px}.login-form-outer{padding:35px 20px}.login-card .logo-inline{margin-bottom:25px}.pagehead{align-items:flex-start;flex-direction:column}.fields-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:16px}}@media(max-width:480px){.grid-cards{grid-template-columns:1fr}.topbar .user-badge{display:none}.editor-body,.editor-head,.editor-foot{padding-left:16px;padding-right:16px}}
+@media print{body{background:white}.sidebar,.topbar,.pagehead,.table-toolbar,.no-print,.actions,.row-actions,.notices{display:none!important}.shell{display:block}.content{padding:0;margin:0}.panel,.report-box{box-shadow:none;border:0;padding:0}.data-table td,.data-table th{padding:7px;border-bottom:1px solid #ddd}.print-heading{display:block!important}h1{font-size:20px}}.print-heading{display:none}
+/* Seuz 2.0: identidad visual renovada */
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#1a2b45;background:#f5f7fb;font-size:14px}
+body{background:#f5f7fb}.brand-symbol{background:linear-gradient(145deg,#4d88e8,#555fce);border-radius:14px;box-shadow:0 9px 25px #3563bf50}.sidebar{background:#12233f;padding-top:32px}.sidebar .logo-inline{font-size:26px;letter-spacing:-1.1px}.sidebar-label{color:#7d95b9}.navbtn{border-radius:10px;transition:.16s}.navbtn:hover{background:#263c5e}.navbtn.active{background:#476bdf;box-shadow:0 8px 20px #101b3563}.topbar{height:74px;background:#fff;border-color:#e7edf5}.content{padding-top:35px}.pagehead h1{font-size:31px;letter-spacing:-1.2px}.eyebrow{color:#627bd4;letter-spacing:1.7px}.kpi,.panel,.welcome{border-radius:17px;border-color:#e6ecf4;box-shadow:0 12px 40px #172c5409}.kpi{padding:23px}.kpi .num{color:#1b3355;font-size:34px}.kpi .kpi-icon{background:#edf2ff;border-radius:12px;padding:7px;font-size:22px}.welcome{background:linear-gradient(115deg,#1e365a,#264385 65%,#426fe0);padding:33px 35px}.welcome h2{font-size:27px}.welcome p{color:#c5d5f6}.panel{padding:23px}.panel h2{font-size:16px;letter-spacing:-.4px}.btn{border-radius:10px;border-color:#d7e0ef;font-size:12px;transition:.15s}.btn-primary{background:#466de0;border-color:#466de0;box-shadow:0 5px 16px #385ac63d}.btn-primary:hover{background:#3257cd}.input,.select,textarea{border-radius:9px;border-color:#d8e1ee}.input:focus,.select:focus,textarea:focus{border-color:#5479e4;box-shadow:0 0 0 3px #567de41e}.data-table th{color:#8897aa;font-size:10px}.data-table td{font-size:12px}.data-table tbody tr:hover{background:#f8faff}.pill{background:#eaf1ff;color:#496bb8}.pill.green{background:#e4f6ed;color:#177b60}.pill.red{background:#fcecef;color:#b84d62}.pill.amber{background:#fff2d9;color:#a57526}.login-visual{background:radial-gradient(ellipse at 90% 8%,#295f947b,transparent 38%),radial-gradient(ellipse at 18% 85%,#6861b654,transparent 36%),#12233f;padding:65px}.login-visual h1{font-size:clamp(36px,4.5vw,60px);letter-spacing:-2.3px}.login-visual p{color:#bbcae5;line-height:1.7}.login-form-outer{background:white}.login-card h2{font-size:31px;letter-spacing:-1.1px}.login-card p{line-height:1.65}.login-card .logo-inline{font-size:26px}.editor{border-radius:19px;box-shadow:0 32px 90px #071a3b70}.editor::backdrop{background:#07152db5;backdrop-filter:blur(3px)}.editor-head{padding:24px 26px}.editor-body{padding:24px 26px}.editor-foot{padding:16px 26px}
+@media(max-width:790px){.sidebar{padding:15px;background:#12233f}.content{padding:23px 15px}.login-visual{padding:25px}}
+</style></head><body>
+<div id="notices" class="notices" aria-live="polite"></div>
+<div id="app"><div class="startup"><div class="brand-symbol">S</div><p>Iniciando Seuz…</p></div></div>
+<dialog id="editor" class="editor"><div id="editor-content"></div></dialog>
+<script>
+(function(){
+  const key='seuz-cloud-config';
+  let data={};try{data=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}
+  window.SEUZ_CONFIG={SUPABASE_URL: data.SUPABASE_URL||'',
+    SUPABASE_PUBLISHABLE_KEY:data.SUPABASE_PUBLISHABLE_KEY||'',
+    NOMBRE_COLEGIO:'Seuz — Sistema Académico',NOTA_MINIMA_APROBACION:60};
+})();
+</script>
+<script>/* SEUZ: cliente ligero Supabase REST/Auth para la versión Android offline-shell.
+   Nunca almacena ni solicita secret, service_role o contraseña de base de datos. */
+(function (global) {
+  'use strict';
+  const STORE = 'seuz_cloud_session_v1';
+  const waiters = new Set();
+  let refreshInProgress = null;
+  const safeRead = () => {try{return JSON.parse(localStorage.getItem(STORE) || 'null');}catch{return null;}};
+  let session = safeRead();
+  const save = value => { session=value; if(value)localStorage.setItem(STORE,JSON.stringify(value)); else localStorage.removeItem(STORE);};
+  const errorFrom = (json,status) => ({
+    message: String(json?.msg || json?.message || json?.error_description || json?.error || `Error de conexión (HTTP ${status})`),
+    status: status
+  });
+  function createClient(url, publicKey) {
+    const base = String(url).replace(/\/+$/, '');
+    const key=String(publicKey);
+    if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(base)) throw new Error('Utiliza una dirección HTTPS de Supabase.');
+    if(!key || key.length < 15 || /^sb_secret_|^sb_secret\b/i.test(key)) throw new Error('La clave pública de Supabase es inválida.');
+    const common={apikey:key};
+    async function plain(path,opts={}) {
+      let response;
+      try { response=await fetch(base+path,opts); }
+      catch(e){return {data:null,error:{message:'Sin conexión a Supabase. Revisa el Internet, la URL y la conexión de Seuz: '+(e?.message||String(e)),status:0}};}
+      let data=null;
+      try { const body=await response.text(); data=body?JSON.parse(body):null; }
+      catch(e) { return {data:null,error:{message:'Respuesta incorrecta del servidor: '+e.message,status:response.status}}; }
+      if(!response.ok)return {data:null,error:errorFrom(data,response.status)};
+      return {data,error:null};
+    }
+    function authHeaders(token){return {...common, ...(token ? {'Authorization':'Bearer '+token}:{})};}
+    function authEvents(type){for(const f of waiters){try{f(type,session);}catch(e){console.error(e);}}}
+    async function refresh() {
+      if(!session?.refresh_token)return {error:{message:'Necesitas iniciar sesión.'}};
+      if(refreshInProgress)return refreshInProgress;
+      refreshInProgress=(async()=>{
+        const response=await plain('/auth/v1/token?grant_type=refresh_token',{
+          method:'POST',headers:{...common,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:session.refresh_token})
+        });
+        if(response.error){ save(null);authEvents('SIGNED_OUT');return response; }
+        const r=response.data || {};
+        if(!r.access_token || !r.refresh_token) {save(null);authEvents('SIGNED_OUT');return {error:{message:'Respuesta inválida al renovar la sesión'}};}
+        save({...r,expires_at: Math.floor(Date.now()/1000)+Number(r.expires_in||3600)});
+        authEvents('TOKEN_REFRESHED');
+        return {error:null,data:session};
+      })();
+      try{return await refreshInProgress;}finally{refreshInProgress=null;}
+    }
+    async function token() {
+      if(!session?.access_token)return null;
+      if(Date.now()/1000>Number(session.expires_at||0)-90){
+        const r=await refresh();if(r.error)throw new Error(r.error.message);
+      }
+      return session?.access_token||null;
+    }
+    async function request(path,options={}){
+      let jwt;
+      try{jwt=await token();}catch(e){return {data:null,error:{message:e.message,status:401}};}
+      const opts={...options,headers:{...authHeaders(jwt),...(options.headers||{})}};
+      let res=await plain(path,opts);
+      if(res.error?.status===401&&session?.refresh_token){
+        const refreshed=await refresh();
+        if(!refreshed.error)res=await plain(path,{...options,headers:{...authHeaders(session.access_token),...(options.headers||{})}});
+      }
+      return res;
+    }
+    const auth={
+      async signInWithPassword({email,password}){
+        const r=await plain('/auth/v1/token?grant_type=password',{
+          method:'POST',headers:{...common,'Content-Type':'application/json'},
+          body:JSON.stringify({email:String(email).trim(),password:String(password)})
+        });
+        if(r.error)return {data:{user:null,session:null},error:r.error};
+        if(!r.data?.access_token||!r.data?.refresh_token)return {data:{user:null,session:null},error:{message:'La respuesta de inicio de sesión fue incompleta.'}};
+        save({...r.data,expires_at:Math.floor(Date.now()/1000)+Number(r.data.expires_in||3600)});
+        authEvents('SIGNED_IN');
+        return {data:{user:r.data.user,session},error:null};
+      },
+      async getUser(){
+        if(!session?.access_token)return {data:{user:null},error:null};
+        const r=await request('/auth/v1/user');
+        return {data:{user:r.data},error:r.error};
+      },
+      async signOut(){
+        const jwt=session?.access_token;save(null);authEvents('SIGNED_OUT');
+        if(jwt) {await plain('/auth/v1/logout',{method:'POST',headers:authHeaders(jwt)});}
+        return {error:null};
+      },
+      async updateUser(changes){
+        const r=await request('/auth/v1/user',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(changes)});
+        return {data:{user:r.data},error:r.error};
+      },
+      onAuthStateChange(callback){waiters.add(callback);return {data:{subscription:{unsubscribe(){waiters.delete(callback);}}}};}
+    };
+    class Query {
+      constructor(table){this.table=table;this.params=new URLSearchParams();this.verb='GET';this.values=undefined;this.singleMode=false;}
+      select(columns='*'){this.params.set('select',columns);return this;}
+      eq(field,value){this.params.set(field,'eq.'+String(value));return this;}
+      order(field,options={}){this.params.set('order',field+'.'+(options.ascending===false?'desc':'asc'));return this;}
+      limit(n){this.params.set('limit',String(n));return this;}
+      maybeSingle(){this.singleMode=true;this.params.set('limit','1');return this;}
+      single(){this.singleMode=true;this.params.set('limit','1');return this;}
+      insert(values){this.verb='POST';this.values=values;return this;}
+      update(values){this.verb='PATCH';this.values=values;return this;}
+      delete(){this.verb='DELETE';return this;}
+      async execute(){
+        const headers={};if(['POST','PATCH'].includes(this.verb)) headers['Content-Type']='application/json';
+        if(this.verb==='GET')headers.Accept='application/json';
+        const q=this.params.toString();
+        const r=await request(`/rest/v1/${encodeURIComponent(this.table)}${q?'?'+q:''}`,{
+          method:this.verb,headers,...(this.values===undefined?{}:{body:JSON.stringify(this.values)})
+        });
+        if(r.error)return r;
+        return {data:this.singleMode?(Array.isArray(r.data)?r.data[0]||null:r.data):r.data,error:null};
+      }
+      then(resolve,reject){return this.execute().then(resolve,reject);}
+    }
+    return {
+      auth,
+      from(table){return new Query(table);},
+      functions:{
+        async invoke(name,{body}={}){
+          const r=await request('/functions/v1/'+encodeURIComponent(name),{
+            method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})
+          });
+          if(!r.error)return r;
+          return {data:null,error:{...r.error,context:{json:async()=>({error:r.error.message})}}};
+        }
+      }
+    };
+  }
+  global.SEUZ_CLOUD = {createClient};
+})(window);
+</script>
+<script>/* Seuz Android nube — autentica mediante Supabase Auth y PostgREST */
+const root = document.getElementById('app');
+const dialog = document.getElementById('editor');
+const dialogBody = document.getElementById('editor-content');
+const cfg = window.SEUZ_CONFIG || {};
+const LIMITE = Number(cfg.NOTA_MINIMA_APROBACION ?? 60);
+const validConfig = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(cfg.SUPABASE_URL || '') &&
+  Boolean(cfg.SUPABASE_PUBLISHABLE_KEY && cfg.SUPABASE_PUBLISHABLE_KEY.length >= 15 && !cfg.SUPABASE_PUBLISHABLE_KEY.startsWith('sb_secret_'));
+let db = null;
+if (validConfig) {
+  try { db = SEUZ_CLOUD.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_PUBLISHABLE_KEY); }
+  catch(e){console.error(e);}
+}
+function updateConfig() {
+  const url = document.getElementById('config-url')?.value?.trim()?.replace(/\/+$/,'') || '';
+  const key = document.getElementById('config-key')?.value?.trim() || '';
+  if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url)) {
+    window.alert('La URL debe ser https://ID-DE-TU-PROYECTO.supabase.co');return;
+  }
+  if(key.length < 15 || !/^(sb_publishable_|eyJ)/.test(key)){
+    window.alert('Indica la clave pública publishable (sb_publishable_...) o anon legacy. Nunca uses secret ni service_role.');return;
+  }
+  localStorage.setItem('seuz-cloud-config',JSON.stringify({SUPABASE_URL:url,SUPABASE_PUBLISHABLE_KEY:key}));
+  location.reload();
+}
+const S = { perfil:null, ruta:'inicio', perfiles:[], cursos:[], inscripciones:[], calificaciones:[], historial:[], cargando:false, filtro:'', reporte:[] };
+const nombreRol = { superadministrador:'Superadministrador', administracion:'Administración', docente:'Docente', estudiante:'Estudiante' };
+const isStaff = () => ['superadministrador','administracion'].includes(S.perfil?.rol);
+const isSuper = () => S.perfil?.rol === 'superadministrador';
+const isTeacher = () => S.perfil?.rol === 'docente';
+const el = id => document.getElementById(id);
+const esc = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const fmt = value => value ? new Date(value).toLocaleDateString('es-GT') : '—';
+const fullName = p => p ? `${p.nombres} ${p.apellidos}` : 'Sin asignar';
+const nameFor = id => fullName(S.perfiles.find(p=>p.id===id));
+const courseFor = id => S.cursos.find(c=>c.id===id);
+const enrollmentFor = id => S.inscripciones.find(i=>i.id===id);
+const gradeFor = id => S.calificaciones.find(g=>g.inscripcion_id===id);
+const scoreStatus = g => !g || [g.nota1,g.nota2,g.nota3,g.nota4].some(x=>x==null) ? 'Pendiente' : Number(g.promedio) >= LIMITE ? 'Aprobado' : 'Reprobado';
+const tag = (text,tone='') => `<span class="pill ${tone}">${esc(text)}</span>`;
+const statusTag = (s) => tag(s, ['activo','activa','Aprobado','Activo'].includes(s)?'green':
+  ['Reprobado','retirada','Inactivo','inactivo'].includes(s)?'red':'amber');
+const btn = (label,act,id='',cls='') => `<button class="btn btn-small ${cls}" data-action="${act}" data-id="${esc(id)}">${label}</button>`;
+function notify(msg, fail=false) {
+  const item=document.createElement('div'); item.className='notice'+(fail?' fail':''); item.textContent=msg;
+  el('notices').append(item); setTimeout(()=>item.remove(),5500);
+}
+function message(e){return e?.message || e?.error || String(e || 'Error inesperado');}
+function markBusy(form, busy){ form.querySelectorAll('button[type=submit]').forEach(b=>{b.disabled=busy;b.textContent=busy?'Guardando...':'Guardar';}); }
+function openEditor(title,markup,onSubmit,saveLabel='Guardar'){
+  dialogBody.innerHTML=`<div class="editor-head"><h2>${esc(title)}</h2><button type="button" class="btn btn-small" data-action="cerrar">✕</button></div>
+  <form id="edit-form"><div class="editor-body">${markup}</div><div class="editor-foot">
+  <button type="button" class="btn" data-action="cerrar">Cancelar</button><button class="btn btn-primary" type="submit">${esc(saveLabel)}</button></div></form>`;
+  const form=el('edit-form');
+  form.onsubmit=async e=>{e.preventDefault();if(!form.reportValidity())return;markBusy(form,true);
+    try { await onSubmit(Object.fromEntries(new FormData(form).entries()),form); dialog.close(); await fetchAll(); notify('Cambios guardados correctamente'); }
+    catch(ex){notify(message(ex),true);markBusy(form,false);} };
+  dialog.showModal();
+}
+function infoEditor(title,markup){
+  dialogBody.innerHTML=`<div class="editor-head"><h2>${esc(title)}</h2><button class="btn btn-small" data-action="cerrar">✕</button></div>
+  <div class="editor-body">${markup}</div><div class="editor-foot"><button class="btn btn-primary" data-action="cerrar">Entendido</button></div>`;
+  dialog.showModal();
+}
+const input = (name,label,value='',type='text',required=false,other='') => `<div class="field"><label for="f-${name}">${esc(label)}</label>
+  <input class="input" id="f-${name}" name="${name}" type="${type}" value="${esc(value)}" ${required?'required':''} ${other}></div>`;
+const select = (name,label,items,value='',other='')=>`<div class="field"><label for="f-${name}">${esc(label)}</label><select class="select" id="f-${name}" name="${name}" ${other}>
+  ${items.map(([v,t])=>`<option value="${esc(v)}" ${String(v)===String(value)?'selected':''}>${esc(t)}</option>`).join('')}</select></div>`;
+const searchBar = (placeholder='Buscar por nombre o código...')=>`<div class="table-toolbar"><input id="table-search" class="input input-search" placeholder="${esc(placeholder)}" aria-label="Filtrar tabla" value="${esc(S.filtro)}"/><span class="hint">Busca entre los registros visibles</span></div>`;
+function table(headers,rows){
+  return `<div class="table-wrap"><table class="data-table"><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows || `<tr><td colspan="${headers.length}" class="empty">Todavía no hay registros disponibles.</td></tr>`}</tbody></table></div>`;
+}
+function filterVisible(){const q=norm(el('table-search')?.value||'');document.querySelectorAll('.data-table tbody tr[data-search]').forEach(r=>r.hidden=!norm(r.dataset.search).includes(q));}
+function configuredScreen(){
+  root.innerHTML=`<div class="login-screen"><section class="login-visual"><div class="logo-inline"><div class="brand-symbol">S</div> SEUZ</div>
+  <div><h1>Tu colegio, conectado.</h1><p>Configuración única del servidor para compartir notas, cursos y usuarios entre celulares.</p></div><small>Supabase · Acceso institucional</small></section>
+  <section class="login-form-outer"><form id="seuz-setup-form" class="login-card">
+    <div class="logo-inline"><div class="brand-symbol">S</div> Seuz</div><h2>Conectar base de datos</h2>
+    <p class="muted">Primero crea las tablas y la cuenta superadministradora en tu proyecto Supabase siguiendo la guía del ZIP.</p>
+    <div class="field"><label>URL del proyecto Supabase</label><input id="config-url" type="url" class="input" required placeholder="https://tu-proyecto.supabase.co" value="${String(cfg.SUPABASE_URL||'').replace(/"/g,'&quot;')}"></div>
+    <div class="field" style="margin-top:16px"><label>Clave pública publishable / anon</label><input id="config-key" type="text" class="input" autocomplete="off" required placeholder="sb_publishable_..." value="${String(cfg.SUPABASE_PUBLISHABLE_KEY||'').replace(/"/g,'&quot;')}"></div>
+    <button class="btn btn-primary btn-block" style="margin-top:22px;padding:13px" type="submit">Guardar y conectar</button>
+    <p class="footer-note">Nunca introduzcas aquí la contraseña de PostgreSQL ni una clave secret o service_role. Seuz necesita Internet.</p>
+  </form></section></div>`;
+  document.getElementById('seuz-setup-form').onsubmit=e=>{e.preventDefault();updateConfig();};
+}
+function loginScreen(){
+  root.innerHTML=`<div class="login-screen"><section class="login-visual"><div class="logo-inline"><div class="brand-symbol">S</div> SEUZ</div>
+    <div><div class="eyebrow" style="color:#9cb2ff">PLATAFORMA ACADÉMICA</div><h1>Gestiona el futuro de tu institución.</h1>
+    <p>Acceso seguro y organizado para dirección, administración, docentes y estudiantes.</p></div>
+    <small>© ${new Date().getFullYear()} Seuz · Educación con tecnología</small></section>
+    <section class="login-form-outer"><form id="login-form" class="login-card">
+      <div class="logo-inline"><div class="brand-symbol">S</div> Seuz</div><h2>Bienvenido de nuevo</h2><p class="muted">Ingresa con el usuario y contraseña asignados por el colegio.</p>
+      ${input('correo','Usuario (correo electrónico)','','email',true,'autocomplete="username"')}
+      ${input('contrasena','Contraseña','','password',true,'autocomplete="current-password"')}
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:8px;padding:13px">Iniciar sesión</button>
+      <p class="footer-note" style="margin-top:22px">¿Necesitas acceso? Solicita una cuenta a la administración de tu colegio.</p><button type="button" class="btn" id="change-cloud" style="margin-top:15px;width:100%">Cambiar conexión de Supabase</button>
+    </form></section></div>`;
+  el('change-cloud').onclick=()=>configuredScreen();
+  el('login-form').onsubmit=async e=>{e.preventDefault();const b=e.currentTarget.querySelector('button[type=submit]');b.disabled=true;b.textContent='Verificando...';
+    const values=Object.fromEntries(new FormData(e.currentTarget));
+    const {error}=await db.auth.signInWithPassword({email:values.correo.trim(),password:values.contrasena});
+    if(error){notify('No se pudo iniciar sesión. Revisa tus credenciales.',true);b.disabled=false;b.textContent='Iniciar sesión';return;}
+    try{await loadCurrent();}catch(ex){notify(message(ex),true);await db.auth.signOut();loginScreen();}
+  };
+}
+async function loadCurrent(){
+  const {data:{user},error}=await db.auth.getUser();
+  if(error||!user){S.perfil=null;loginScreen();return;}
+  const r=await db.from('perfiles').select('*').eq('id',user.id).maybeSingle();
+  if(r.error)throw r.error;
+  if(!r.data || !r.data.activo) {await db.auth.signOut();S.perfil=null;loginScreen();throw Error('Tu cuenta no está habilitada. Comunícate con administración.');}
+  S.perfil=r.data;
+  await fetchAll();
+}
+async function fetchAll(){
+  if(!S.perfil) return;
+  S.cargando=true;
+  const names=['perfiles','cursos','inscripciones','calificaciones','historial_calificaciones'];
+  const queries=[db.from('perfiles').select('*').order('nombres'),db.from('cursos').select('*').order('nombre'),
+    db.from('inscripciones').select('*').order('inscrito_en',{ascending:false}),
+    db.from('calificaciones').select('*'),db.from('historial_calificaciones').select('*').order('fecha',{ascending:false}).limit(300)];
+  const results=await Promise.all(queries);
+  const failure=results.find(x=>x.error);
+  S.cargando=false;
+  if(failure)throw failure.error;
+  [S.perfiles,S.cursos,S.inscripciones,S.calificaciones,S.historial]=results.map(r=>r.data||[]);
+  renderShell();
+}
+function allowedRoutes(){
+  const items=[['inicio','⌂','Panel principal'],
+    ...(isStaff()?[['usuarios','♙','Usuarios'],['estudiantes','♧','Estudiantes'],['docentes','♟','Docentes']]:[]),
+    ['cursos','▤',isStaff()?'Cursos':'Mis cursos'],['inscripciones','☷',isStaff()?'Inscripciones':'Mis inscripciones'],
+    ['calificaciones','▥','Calificaciones'],['reportes','▧','Reportes'],['perfil','⚙','Mi perfil']];
+  return items;
+}
+function renderShell(){
+  if(!S.perfil) return;
+  if(!allowedRoutes().some(r=>r[0]===S.ruta)) S.ruta='inicio';
+  const nav=allowedRoutes().map(([id,ic,txt])=>`<button class="navbtn ${S.ruta===id?'active':''}" data-route="${id}"><span class="nav-icon">${ic}</span>${esc(txt)}</button>`).join('');
+  root.innerHTML=`<div class="shell"><aside class="sidebar"><div class="logo-inline"><div class="brand-symbol">S</div> SEUZ</div>
+  <div class="sidebar-label">MENÚ PRINCIPAL</div><nav class="nav-list" aria-label="Navegación">${nav}</nav>
+  <div class="profile-chip"><strong>${esc(fullName(S.perfil))}</strong><span>${esc(nombreRol[S.perfil.rol])}</span>
+  <button data-action="salir" class="btn btn-outline-light btn-block" style="margin-top:17px">Cerrar sesión</button></div></aside>
+  <div class="main"><header class="topbar"><span class="breadcrumb">Seuz / ${esc(allowedRoutes().find(x=>x[0]===S.ruta)?.[2])}</span>
+  <div class="actions"><span class="user-badge">${esc(nombreRol[S.perfil.rol])}</span><button class="btn btn-small" data-action="recargar">↻ Actualizar</button><button class="btn btn-small" data-action="salir">Salir</button></div></header>
+  <main class="content" id="page">${pageContent()}</main></div></div>`;
+  if(el('table-search')) {el('table-search').addEventListener('input',e=>{S.filtro=e.target.value;filterVisible();});filterVisible();}
+}
+function pageHeader(title,caption,buttons=''){
+  return `<div class="pagehead"><div><div class="eyebrow">SISTEMA DE GESTIÓN ACADÉMICA</div><h1>${esc(title)}</h1><p class="subtitle">${esc(caption)}</p></div><div class="actions no-print">${buttons}</div></div>`;
+}
+function pageContent(){
+  switch(S.ruta){case'inicio':return dashboard();case'usuarios':return usersPage();case'estudiantes':return peoplePage('estudiante');
+    case'docentes':return peoplePage('docente');case'cursos':return coursesPage();case'inscripciones':return enrollmentsPage();
+    case'calificaciones':return gradesPage();case'reportes':return reportsPage();case'perfil':return profilePage();default:return dashboard();}
+}
+function dashboard(){
+  const activeStudents=S.perfiles.filter(p=>p.rol==='estudiante'&&p.activo).length;
+  const activeTeachers=S.perfiles.filter(p=>p.rol==='docente'&&p.activo).length;
+  const activeCourses=S.cursos.filter(c=>c.estado==='activo').length;
+  const enrollments=S.inscripciones.filter(i=>i.estado==='activa');
+  const grades=S.calificaciones.filter(g=>g.promedio!=null&&![g.nota1,g.nota2,g.nota3,g.nota4].some(x=>x==null));
+  const average=grades.length?(grades.reduce((s,g)=>s+Number(g.promedio),0)/grades.length).toFixed(1):'—';
+  const alertas=[];
+  for(const c of S.cursos.filter(c=>c.estado==='activo')) {
+    const n=enrollments.filter(i=>i.curso_id===c.id).length;
+    if(n>=c.cupo_maximo) alertas.push({text:`Cupo agotado en ${c.nombre} (${n}/${c.cupo_maximo}).`,info:false});
+  }
+  const noGrade=enrollments.filter(i=>!gradeFor(i.id)||scoreStatus(gradeFor(i.id))==='Pendiente');
+  if(noGrade.length) alertas.push({text:`Hay ${noGrade.length} inscripciones con calificaciones pendientes.`,info:true});
+  const low=grades.filter(g=>Number(g.promedio)<LIMITE);
+  if(low.length) alertas.push({text:`Se identificaron ${low.length} registros con rendimiento inferior a ${LIMITE}/100.`,info:false});
+  const stat=(icon,label,num,sub)=>`<div class="kpi"><span class="kpi-icon">${icon}</span><div class="tag">${label}</div><span class="num">${num}</span><span class="foot">${sub}</span></div>`;
+  return `<div class="welcome"><div class="eyebrow" style="color:#c3d1ff">BIENVENIDO A SEUZ</div><h2>¡Hola, ${esc(S.perfil.nombres)}! 👋</h2>
+    <p>${esc(isStaff()?'Controla la operación académica de tu colegio.':isTeacher()?'Consulta tus cursos y registra evaluaciones.':'Consulta tus cursos, notas y desempeño académico.')}</p></div>
+    <div class="grid-cards">${stat('🎓', 'Estudiantes activos',activeStudents,'Visibles para tu rol')}
+    ${stat('👨‍🏫','Docentes registrados',activeTeachers,'Visibles para tu rol')}
+    ${stat('📚','Cursos disponibles',activeCourses,'Cursos a tu alcance')}
+    ${stat('📝','Inscripciones vigentes',enrollments.length,'Promedio: '+average)}</div>
+    <div class="panels2"><section class="panel"><h2>🔔 Notificaciones y alertas</h2>${alertas.length?
+      alertas.slice(0,12).map(a=>`<div class="alertrow ${a.info?'info':''}"><span> ${a.info?'ℹ️':'⚠️'} </span><span>${esc(a.text)}</span></div>`).join(''):
+      `<p class="muted">No hay alertas pendientes para tu perfil.</p>`}</section><section class="panel"><h2>Accesos rápidos</h2>
+      <div style="display:grid;gap:10px"><button class="btn" data-route="cursos">📚 Ver cursos</button>
+      <button class="btn" data-route="calificaciones">📝 Consultar calificaciones</button>
+      <button class="btn" data-route="reportes">📊 Ver reportes</button>${isStaff()?'<button class="btn btn-primary" data-action="nuevo-usuario">＋ Registrar usuario</button>':''}</div></section></div>
+    <p class="footer-note">Los conteos reflejan únicamente los datos autorizados para tu usuario. Nota mínima de aprobación: ${esc(LIMITE)} puntos.</p>`;
+}
+function peopleRows(role){
+  return S.perfiles.filter(p=>p.rol===role).map(p=>`<tr data-search="${esc([p.codigo,p.nombres,p.apellidos,p.correo,p.carrera,p.especialidad].join(' '))}">
+    <td><strong>${esc(p.codigo||'—')}</strong></td><td>${esc(fullName(p))}</td><td>${esc(p.correo)}</td>
+    <td>${esc(role==='docente'?p.especialidad||'—':p.carrera||'—')}</td><td>${statusTag(p.activo?'Activo':'Inactivo')}</td>
+    <td>${btn('Editar','editar-usuario',p.id)} ${btn('Contraseña','clave-usuario',p.id)}</td></tr>`).join('');
+}
+function peoplePage(role){
+  const title=role==='estudiante'?'Gestión de estudiantes':'Gestión de docentes';
+  const count=S.perfiles.filter(x=>x.rol===role).length;
+  return pageHeader(title,`${count} registros. Administra su información y el acceso a Seuz.`,btn('＋ Registrar '+(role==='estudiante'?'estudiante':'docente'),'nuevo-'+role,'','btn-primary'))+
+    `<div class="panel">${searchBar()}${table(['Código','Nombre completo','Correo / usuario',role==='docente'?'Especialidad':'Carrera','Estado','Acciones'],peopleRows(role))}</div>`;
+}
+function usersPage(){
+  return pageHeader('Usuarios y accesos','Gestiona cuentas, roles y contraseñas desde un solo lugar.',btn('＋ Crear cuenta','nuevo-usuario','','btn-primary'))+
+    `<div class="panel">${searchBar('Buscar usuario, rol, correo...')}
+    ${table(['Código','Nombre','Usuario (correo)','Rol','Estado','Acciones'],S.perfiles.map(p=>`<tr data-search="${esc([p.codigo,fullName(p),p.correo,p.rol].join(' '))}">
+    <td>${esc(p.codigo||'—')}</td><td><strong>${esc(fullName(p))}</strong></td><td>${esc(p.correo)}</td>
+    <td>${tag(nombreRol[p.rol])}</td><td>${statusTag(p.activo?'Activo':'Inactivo')}</td><td><div class="row-actions">
+    ${(isSuper()||['estudiante','docente'].includes(p.rol))?btn('Editar','editar-usuario',p.id):''}
+    ${p.id!==S.perfil.id&&(isSuper()||['estudiante','docente'].includes(p.rol))?btn('Clave','clave-usuario',p.id):''}</div></td></tr>`).join(''))}</div>`;
+}
+function optionsRoles(existing){
+  return ['superadministrador','administracion','docente','estudiante']
+    .filter(r=>isSuper()||r==='docente'||r==='estudiante')
+    .map(r=>[r,nombreRol[r]]);
+}
+function passwordGenerate(){
+  const chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%*-_';
+  const bytes=crypto.getRandomValues(new Uint8Array(18));
+  return Array.from(bytes,x=>chars[x%chars.length]).join('');
+}
+function newUser(role='estudiante',p=null){
+  if(!isStaff())return;
+  if(p && !isSuper() && !['docente','estudiante'].includes(p.rol)) {notify('No tienes permiso sobre esta cuenta',true);return;}
+  const values=p||{};
+  const pw=p?'':passwordGenerate();
+  const markup=`<div class="fields-grid">
+    ${select('rol','Tipo de usuario',optionsRoles(p),p?.rol||role,'required')}
+    ${input('codigo','Código institucional',values.codigo||'','text',false,'maxlength="50"')}
+    ${input('nombres','Nombres',values.nombres||'','text',true)}
+    ${input('apellidos','Apellidos',values.apellidos||'','text',true)}
+    <div class="field full"><label for="f-correo">Usuario (correo electrónico)</label>
+      <input class="input" id="f-correo" name="correo" type="email" value="${esc(values.correo||'')}" required />
+      <span class="field-note">El correo funciona como nombre de usuario al iniciar sesión.${p?' Si lo cambias, se actualizará también el usuario de inicio de sesión.':''}</span></div>
+    ${input('telefono','Teléfono',values.telefono||'','tel')}
+    ${input('carrera','Carrera / grado / sección',values.carrera||'')}
+    ${input('especialidad','Especialidad del docente',values.especialidad||'')}
+    ${input('fecha_ingreso','Fecha de ingreso',values.fecha_ingreso||'','date')}
+    ${select('estado_academico','Estado académico',[['Activo','Activo'],['Inactivo','Inactivo'],['Egresado','Egresado'],['Retirado','Retirado']],values.estado_academico||'Activo')}
+    ${p?select('activo','Acceso al sistema',[['true','Cuenta activa'],['false','Cuenta desactivada']],String(p.activo)):
+      `<div class="field full"><label for="f-contrasena">Contraseña inicial (guárdala antes de confirmar)</label>
+      <div class="actions"><input class="input" style="flex:1" id="f-contrasena" name="contrasena" value="${esc(pw)}" minlength="10" required />
+      <button type="button" class="btn" data-action="generar-clave">Generar otra</button></div>
+      <span class="field-note">La contraseña se crea de forma segura en Supabase y no se guarda en texto plano en Seuz.</span></div>`}
+  </div>`;
+  openEditor(p?'Editar usuario':'Registrar usuario',markup,async(v)=>{
+    const savedPassword=v.contrasena;
+    const payload={accion:p?'actualizar':'crear',...(p?{id:p.id}:{contrasena:v.contrasena}),
+      ...v,activo:p?v.activo==='true':true};
+    if(!p&&!savedPassword)throw Error('Indica una contraseña');
+    const {data,error}=await db.functions.invoke('gestionar-usuarios',{body:payload});
+    if(error){let detail=null;try{if(typeof error.context?.json==='function')detail=await error.context.json();}catch{}throw Error(detail?.error||message(error));}
+    if(data?.error)throw Error(data.error);
+    if(!p){
+      // No se almacena la clave en ningún listado. Se presenta solo una vez.
+      setTimeout(()=>infoEditor('Cuenta creada correctamente',`<div class="help-box"><p>Comparte estos datos de manera privada con el usuario:</p>
+      <div class="details-list"><span>Usuario</span><strong id="credential-user">${esc(v.correo)}</strong></div>
+      <div class="details-list"><span>Contraseña inicial</span><strong id="credential-pass">${esc(savedPassword)}</strong></div>
+      <p style="margin:12px 0 0">Por seguridad, esta contraseña no podrá consultarse después. Puedes restablecerla desde Usuarios.</p></div>
+      <button class="btn btn-primary" style="margin-top:14px" data-action="copiar-credenciales">Copiar credenciales</button>`),150);
+    }
+  });
+}
+function resetPassword(p){
+  if(!isStaff()||!p||p.id===S.perfil.id)return;
+  const pwd=passwordGenerate();
+  openEditor('Asignar nueva contraseña',`<p class="muted">Usuario: <strong>${esc(p.correo)}</strong>. Esta acción sustituirá su contraseña anterior.</p>
+  <div class="field"><label for="f-contrasena">Contraseña nueva</label><div class="actions">
+  <input class="input" id="f-contrasena" name="contrasena" value="${esc(pwd)}" minlength="10" required style="flex:1" />
+  <button class="btn" type="button" data-action="generar-clave">Generar otra</button></div></div>`,async v=>{
+    const {data,error}=await db.functions.invoke('gestionar-usuarios',{body:{accion:'contrasena',id:p.id,contrasena:v.contrasena}});
+    if(error){let detail=null;try{if(typeof error.context?.json==='function')detail=await error.context.json();}catch{}throw Error(detail?.error||message(error));}
+    if(data?.error)throw Error(data.error);
+    setTimeout(()=>infoEditor('Contraseña actualizada',`<div class="help-box"><div class="details-list"><span>Usuario</span><strong id="credential-user">${esc(p.correo)}</strong></div>
+    <div class="details-list"><span>Contraseña nueva</span><strong id="credential-pass">${esc(v.contrasena)}</strong></div>
+    <p class="field-note">Copia estos datos ahora: no se guardan en el panel.</p></div>
+    <button class="btn btn-primary" data-action="copiar-credenciales">Copiar credenciales</button>`),150);
+  });
+}
+function coursesPage(){
+  const rows=S.cursos.map(c=>{
+    const ocupados=S.inscripciones.filter(i=>i.curso_id===c.id&&i.estado==='activa').length;
+    const teacher=nameFor(c.docente_id);
+    return `<tr data-search="${esc([c.codigo,c.nombre,c.carrera,teacher].join(' '))}"><td><strong>${esc(c.codigo)}</strong></td>
+      <td>${esc(c.nombre)}<div class="hint">${esc(c.descripcion||'')}</div></td><td>${esc(c.carrera||'—')}</td>
+      <td>${esc(teacher)}</td><td>${esc(c.semestre)} / ${esc(c.creditos)}</td><td>${ocupados}/${esc(c.cupo_maximo)} ${ocupados>=c.cupo_maximo?tag('Lleno','amber'):''}</td>
+      <td>${statusTag(c.estado)}</td>${isStaff()?`<td><div class="row-actions">${btn('Editar','editar-curso',c.id)}${btn('Eliminar','borrar-curso',c.id,'btn-danger')}</div></td>`:''}</tr>`;
+  }).join('');
+  return pageHeader(isStaff()?'Gestión de cursos':'Mis cursos','Oferta académica, docentes responsables y capacidad de inscripción.',
+    isStaff()?btn('＋ Nuevo curso','nuevo-curso','','btn-primary'):'')+
+    `<div class="panel">${searchBar('Buscar curso por nombre, carrera, docente...')}${table(['Código','Curso','Carrera','Docente','Semestre / Créditos','Cupos','Estado',...(isStaff()?['Acciones']:[])],rows)}</div>`;
+}
+function courseEditor(c=null){
+  if(!isStaff())return;
+  const docentes=S.perfiles.filter(p=>p.rol==='docente'&&p.activo);
+  openEditor(c?'Editar curso':'Crear curso',`<div class="fields-grid">
+    ${input('codigo','Código de curso',c?.codigo||'','text',true,'maxlength="50"')}
+    ${input('nombre','Nombre del curso',c?.nombre||'','text',true)}
+    ${input('carrera','Carrera / nivel',c?.carrera||'')}
+    ${input('semestre','Semestre / período',c?.semestre??1,'number',true,'min="1" max="20"')}
+    ${input('creditos','Créditos',c?.creditos??1,'number',true,'min="0" max="30"')}
+    ${input('cupo_maximo','Cupo máximo',c?.cupo_maximo??30,'number',true,'min="1" max="1000"')}
+    ${select('docente_id','Docente asignado',[['','Sin asignar'],...docentes.map(p=>[p.id,fullName(p)])],c?.docente_id||'')}
+    ${select('estado','Estado del curso',[['activo','Activo'],['inactivo','Inactivo']],c?.estado||'activo')}
+    <div class="field full"><label for="f-descripcion">Descripción</label><textarea class="input" id="f-descripcion" name="descripcion" rows="3">${esc(c?.descripcion||'')}</textarea></div>
+    </div>`,async v=>{
+    const data={codigo:v.codigo.trim(),nombre:v.nombre.trim(),descripcion:v.descripcion||null,
+      carrera:v.carrera||null,semestre:Number(v.semestre),creditos:Number(v.creditos),
+      cupo_maximo:Number(v.cupo_maximo),docente_id:v.docente_id||null,estado:v.estado};
+    const res=c?await db.from('cursos').update(data).eq('id',c.id):await db.from('cursos').insert(data);
+    if(res.error)throw res.error;
+  });
+}
+function enrollmentsPage(){
+  const rows=S.inscripciones.map(i=>{
+    const c=courseFor(i.curso_id), g=gradeFor(i.id);
+    return `<tr data-search="${esc([nameFor(i.estudiante_id),c?.nombre,c?.codigo,i.estado].join(' '))}">
+    <td><strong>${esc(nameFor(i.estudiante_id))}</strong></td><td>${esc(c?.nombre||'Curso eliminado')}</td>
+    <td>${esc(fmt(i.inscrito_en))}</td><td>${statusTag(i.estado)}</td><td>${esc(g?.promedio??'—')}</td>
+    ${isStaff()?`<td><div class="row-actions">${btn('Estado','editar-inscripcion',i.id)}${btn('Eliminar','borrar-inscripcion',i.id,'btn-danger')}</div></td>`:''}</tr>`;
+  }).join('');
+  return pageHeader(isStaff()?'Inscripciones académicas':'Mis inscripciones','Control de estudiantes inscritos, cupos y estados de matrícula.',
+    isStaff()?btn('＋ Inscribir estudiante','nueva-inscripcion','','btn-primary'):'')+
+    `<div class="panel">${searchBar('Buscar por estudiante, curso o estado...')}
+    ${table(['Estudiante','Curso','Fecha','Estado','Promedio',...(isStaff()?['Acciones']:[])],rows)}</div>`;
+}
+function enrollmentEditor(i=null){
+  if(!isStaff())return;
+  const estudiantes=S.perfiles.filter(p=>p.rol==='estudiante'&&p.activo);
+  const cursos=S.cursos.filter(c=>c.estado==='activo'||c.id===i?.curso_id);
+  const available=cursos.map(c=>{
+    const ocupados=S.inscripciones.filter(x=>x.curso_id===c.id&&x.estado==='activa').length;
+    return [c.id,`${c.nombre} (${ocupados}/${c.cupo_maximo})`];
+  });
+  openEditor(i?'Editar inscripción':'Inscribir estudiante',`<div class="fields-grid">
+    ${select('estudiante_id','Estudiante',estudiantes.map(p=>[p.id,`${fullName(p)} · ${p.codigo||'Sin código'}`]),i?.estudiante_id||'','required '+(i?'disabled':''))}
+    ${select('curso_id','Curso',available,i?.curso_id||'','required '+(i?'disabled':''))}
+    ${select('estado','Estado',[['activa','Activa'],['retirada','Retirada'],['finalizada','Finalizada']],i?.estado||'activa')}
+    </div><p class="hint">No se permiten inscripciones duplicadas; si ya existe una matrícula retirada, cambia su estado para reactivarla.</p>`,async v=>{
+    if(!i && (!v.estudiante_id||!v.curso_id))throw Error('Selecciona estudiante y curso');
+    const data={estado:v.estado};
+    const res=i?await db.from('inscripciones').update(data).eq('id',i.id):
+      await db.from('inscripciones').insert({...data,estudiante_id:v.estudiante_id,curso_id:v.curso_id});
+    if(res.error)throw res.error;
+  });
+}
+function gradesPage(){
+  const rows=S.inscripciones.map(i=>{
+    const c=courseFor(i.curso_id),g=gradeFor(i.id),status=scoreStatus(g);
+    return `<tr data-search="${esc([nameFor(i.estudiante_id),c?.nombre,c?.codigo,status].join(' '))}">
+      <td><strong>${esc(nameFor(i.estudiante_id))}</strong></td><td>${esc(c?.nombre||'—')}</td>
+      <td class="grade-score">${esc(g?.nota1??'—')}</td><td class="grade-score">${esc(g?.nota2??'—')}</td>
+      <td class="grade-score">${esc(g?.nota3??'—')}</td><td class="grade-score">${esc(g?.nota4??'—')}</td><td><strong class="grade-score">${esc(g?.total??'—')}</strong></td><td><strong class="grade-score">${esc(g?.promedio??'—')}</strong></td>
+      <td>${statusTag(status)}</td><td><div class="row-actions">${(isStaff()||isTeacher())&&i.estado==='activa'?btn('Calificar','editar-nota',i.id):''}
+      ${btn('Historial','historial-nota',i.id)}</div></td></tr>`;
+  }).join('');
+  return pageHeader('Calificaciones',`Notas por curso y estudiante. 4 unidades de 100 puntos; aprobación con 240/400 puntos y promedio de ${LIMITE}/100.`)+
+  `<div class="panel">${searchBar('Buscar estudiante, curso, estado...')}
+  ${table(['Estudiante','Curso','Unidad 1','Unidad 2','Unidad 3','Unidad 4','Total','Promedio','Resultado','Acciones'],rows)}</div>`;
+}
+function gradeEditor(i){
+  if(!i||!(isStaff()||isTeacher())||i.estado!=='activa')return;
+  const g=gradeFor(i.id);
+  openEditor('Registrar calificaciones',`<div class="help-box" style="margin-bottom:20px">
+  <strong>${esc(nameFor(i.estudiante_id))}</strong><br>${esc(courseFor(i.curso_id)?.nombre||'Curso')}
+  <p class="field-note">Las notas se califican sobre 100. Cada cambio queda en el historial.</p></div>
+  <div class="fields-grid">${input('nota1','Unidad 1',g?.nota1??'','number',false,'min="0" max="100" step="0.01"')}
+  ${input('nota2','Unidad 2',g?.nota2??'','number',false,'min="0" max="100" step="0.01"')}
+  ${input('nota3','Unidad 3',g?.nota3??'','number',false,'min="0" max="100" step="0.01"')}
+  ${input('nota4','Unidad 4',g?.nota4??'','number',false,'min="0" max="100" step="0.01"')}</div>`,async v=>{
+    const score=x=>v[x]===''?null:Number(v[x]);
+    const notas={nota1:score('nota1'),nota2:score('nota2'),nota3:score('nota3'),nota4:score('nota4')};
+    if(Object.values(notas).some(x=>x!==null&&(!Number.isFinite(x)||x<0||x>100)))throw Error('Las notas deben estar entre 0 y 100');
+    const res=g?await db.from('calificaciones').update(notas).eq('id',g.id):
+      await db.from('calificaciones').insert({inscripcion_id:i.id,...notas});
+    if(res.error)throw res.error;
+  });
+}
+function gradeHistory(i){
+  const records=S.historial.filter(x=>x.inscripcion_id===i.id);
+  const formatVals=v=>v?`Unidad 1: ${esc(v.nota1??'—')} · Unidad 2: ${esc(v.nota2??'—')} · Unidad 3: ${esc(v.nota3??'—')} · Unidad 4: ${esc(v.nota4??'—')}`:'—';
+  infoEditor('Historial de calificaciones',`<p class="muted">${esc(nameFor(i.estudiante_id))} · ${esc(courseFor(i.curso_id)?.nombre||'Curso')}</p>
+  ${records.length?records.map(h=>`<div class="alertrow info"><div><strong>${esc(h.accion)} · ${esc(new Date(h.fecha).toLocaleString('es-GT'))}</strong>
+  <div style="margin-top:7px">Antes: ${formatVals(h.anterior)}</div>
+  <div>Después: ${formatVals(h.nuevo)}</div><div class="hint">Modificado por: ${esc(nameFor(h.modificado_por))}</div></div></div>`).join(''):
+  '<p class="muted">Aún no hay modificaciones registradas para esta inscripción.</p>'}
+  ${S.historial.length===300?'<p class="hint">Se muestran únicamente las 300 modificaciones más recientes.</p>':''}`);
+}
+function makeReport(){
+  return S.inscripciones.map(i=>{
+    const c=courseFor(i.curso_id),g=gradeFor(i.id),student=S.perfiles.find(x=>x.id===i.estudiante_id);
+    return {codigo:student?.codigo||'—',estudiante:nameFor(i.estudiante_id),curso:c?.nombre||'—',
+      carrera:c?.carrera||student?.carrera||'—',docente:nameFor(c?.docente_id),
+      nota1:g?.nota1??'',nota2:g?.nota2??'',nota3:g?.nota3??'',nota4:g?.nota4??'',total:g?.total??'',promedio:g?.promedio??'',
+      resultado:scoreStatus(g),inscripcion:i.estado};
+  });
+}
+function reportsPage(){
+  S.reporte=makeReport();
+  const countApproved=S.reporte.filter(x=>x.resultado==='Aprobado').length;
+  const countFailed=S.reporte.filter(x=>x.resultado==='Reprobado').length;
+  const average=S.reporte.filter(x=>x.promedio!==''&&x.resultado!=='Pendiente');
+  const avg=average.length?(average.reduce((a,x)=>a+Number(x.promedio),0)/average.length).toFixed(2):'—';
+  const rows=S.reporte.map(r=>`<tr data-search="${esc([r.codigo,r.estudiante,r.curso,r.carrera,r.resultado].join(' '))}">
+  <td>${esc(r.codigo)}</td><td>${esc(r.estudiante)}</td><td>${esc(r.curso)}</td><td>${esc(r.carrera)}</td>
+  <td>${esc(r.promedio||'—')}</td><td>${statusTag(r.resultado)}</td></tr>`).join('');
+  return pageHeader('Reportes académicos','Historial, promedios y resultados. Consulta o copia los datos autorizados.',
+    `<button class="btn" data-action="descargar-excel">⇩ Preparar CSV</button><button class="btn btn-primary" data-action="imprimir">▣ Imprimir (según dispositivo)</button>`)+
+    `<div class="grid-cards">${[['Registros evaluados',average.length],['Aprobados',countApproved],['Reprobados',countFailed],['Promedio general',avg]]
+      .map(([k,v])=>`<div class="kpi"><span class="tag">${esc(k)}</span><span class="num">${esc(v)}</span></div>`).join('')}</div>
+    <div class="panel"><div class="print-heading"><h1>${esc(cfg.NOMBRE_COLEGIO||'Seuz')} · Reporte académico</h1>
+    <p>Fecha: ${esc(new Date().toLocaleDateString('es-GT'))} · Umbral de aprobación: ${LIMITE}/100</p></div>
+    ${searchBar('Filtrar estudiante, curso, resultado...')}${table(['Código','Estudiante','Curso','Carrera','Promedio','Resultado'],rows)}</div>
+    <p class="footer-note">Las exportaciones contienen solamente las filas permitidas por los controles de acceso del usuario autenticado.</p>`;
+}
+async function saveExcel(){
+  // WebView Android no dispone necesariamente de un gestor de descargas.
+  // Prepara un CSV para copiar y pegar en Excel, sin servicios externos.
+  const filtrados=S.reporte.filter(r=>norm([r.codigo,r.estudiante,r.curso,r.carrera,r.resultado].join(' ')).includes(norm(S.filtro)));
+  const campos=[['Código','codigo'],['Estudiante','estudiante'],['Curso','curso'],['Carrera','carrera'],
+    ['Docente','docente'],['Unidad 1','nota1'],['Unidad 2','nota2'],['Unidad 3','nota3'],['Unidad 4','nota4'],
+    ['Total','total'],['Promedio','promedio'],['Resultado','resultado'],['Inscripción','inscripcion']];
+  const cell=(value)=>'"'+String(value??'').replaceAll('"','""').replace(/^[=+@\-]/,'\u0027$&')+'"';
+  const csv=[campos.map(([label])=>cell(label)).join(';'),...filtrados.map(r=>campos.map(([,k])=>cell(r[k])).join(';'))].join('\n');
+  infoEditor('Reporte CSV para Excel',`<p class="muted">Puedes seleccionar y copiar todo este contenido. Se separa por punto y coma.</p>
+    <textarea class="input" id="csv-output" readonly rows="12" style="width:100%;min-height:220px;margin-top:12px">${esc(csv)}</textarea>
+    <button class="btn btn-primary" style="margin-top:12px" data-action="copiar-csv">Copiar CSV</button>`);
+}
+function profilePage(){
+  const p=S.perfil;
+  return pageHeader('Mi perfil','Tu información de acceso a Seuz.')+`<div class="panels2"><section class="panel">
+    <h2>Información personal</h2>${[['Nombre',fullName(p)],['Usuario / correo',p.correo],['Código',p.codigo||'—'],
+      ['Rol',nombreRol[p.rol]],['Teléfono',p.telefono||'—'],['Carrera',p.carrera||'—'],['Especialidad',p.especialidad||'—']]
+      .map(([key,val])=>`<div class="details-list"><span>${esc(key)}</span><strong>${esc(val)}</strong></div>`).join('')}</section>
+    <section class="panel"><h2>🔐 Seguridad de la cuenta</h2><p class="muted">Cambia tu contraseña de acceso cuando lo necesites.</p>
+    <button class="btn btn-primary" data-action="cambiar-mi-clave">Cambiar mi contraseña</button>
+    <p class="footer-note">Las contraseñas no se muestran ni se guardan en texto plano en la base de datos.</p></section></div>`;
+}
+function selfPassword(){
+  openEditor('Actualizar mi contraseña',`${input('contrasena','Nueva contraseña (mínimo 10 caracteres)','','password',true,'minlength="10" autocomplete="new-password"')}
+    ${input('verificar','Confirmar contraseña','','password',true,'minlength="10" autocomplete="new-password"')}`,async v=>{
+    if(v.contrasena!==v.verificar)throw Error('Las dos contraseñas no coinciden');
+    const {error}=await db.auth.updateUser({password:v.contrasena});if(error)throw error;
+  });
+}
+async function confirmDelete(table,id,description){
+  if(!isStaff()||!confirm(`¿Eliminar ${description}? Esta operación no se puede deshacer.`))return;
+  const {error}=await db.from(table).delete().eq('id',id);if(error)throw error;
+  await fetchAll();notify('Registro eliminado');
+}
+function setRoute(r){if(!allowedRoutes().some(x=>x[0]===r))return;S.ruta=r;S.filtro='';renderShell();}
+
+document.addEventListener('click',async e=>{
+  const target=e.target.closest('[data-action],[data-route]');if(!target)return;
+  if(target.dataset.route){setRoute(target.dataset.route);return;}
+  const action=target.dataset.action,id=target.dataset.id;
+  try{
+    if(action==='cerrar'){dialog.close();return;}
+    if(action==='salir'){await db.auth.signOut();S.perfil=null;loginScreen();return;}
+    if(action==='recargar'){await loadCurrent();notify('Datos actualizados');return;}
+    if(action==='nuevo-usuario')return newUser(isSuper()?'administracion':'estudiante');
+    if(action==='nuevo-estudiante')return newUser('estudiante');
+    if(action==='nuevo-docente')return newUser('docente');
+    if(action==='editar-usuario')return newUser('estudiante',S.perfiles.find(p=>p.id===id));
+    if(action==='clave-usuario')return resetPassword(S.perfiles.find(p=>p.id===id));
+    if(action==='generar-clave'){el('f-contrasena').value=passwordGenerate();return;}
+    if(action==='copiar-credenciales'){
+      const str=`SEUZ\nUsuario: ${el('credential-user')?.textContent}\nContraseña: ${el('credential-pass')?.textContent}`;
+      if(navigator.clipboard?.writeText) { try{ await navigator.clipboard.writeText(str); notify('Credenciales copiadas. Compártelas de manera privada.'); } catch { window.prompt('Copia estos datos:',str); } } else window.prompt('Copia estos datos:',str);return;
+    }
+    if(action==='nuevo-curso')return courseEditor();
+    if(action==='editar-curso')return courseEditor(courseFor(id));
+    if(action==='borrar-curso')return await confirmDelete('cursos',id,'el curso');
+    if(action==='nueva-inscripcion')return enrollmentEditor();
+    if(action==='editar-inscripcion')return enrollmentEditor(enrollmentFor(id));
+    if(action==='borrar-inscripcion')return await confirmDelete('inscripciones',id,'la inscripción');
+    if(action==='editar-nota')return gradeEditor(enrollmentFor(id));
+    if(action==='historial-nota')return gradeHistory(enrollmentFor(id));
+    if(action==='descargar-excel'){await saveExcel();return;}
+    if(action==='copiar-csv'){const t=el('csv-output');t.select();try{await navigator.clipboard.writeText(t.value);notify('CSV copiado');}catch{notify('Selecciona el texto y cópialo manualmente');}return;}
+    if(action==='imprimir'){notify('La impresión depende de la compatibilidad del teléfono. Para exportar, usa Preparar CSV.');try{window.print();}catch{}return;}
+    if(action==='cambiar-mi-clave')return selfPassword();
+  }catch(ex){notify(message(ex),true);console.error(ex);}
+});
+
+if(!db){configuredScreen();}
+else {
+  db.auth.onAuthStateChange((event)=>{
+    if(event==='SIGNED_OUT'){S.perfil=null;loginScreen();}
+  });
+  loadCurrent().catch(ex=>{console.error(ex);notify(message(ex),true);loginScreen();});
+}
+</script>
+</body></html>

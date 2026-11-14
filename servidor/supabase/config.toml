@@ -1,0 +1,4 @@
+project_id = "seuz"
+
+[functions.gestionar-usuarios]
+verify_jwt = true
